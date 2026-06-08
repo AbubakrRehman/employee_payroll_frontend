@@ -5,8 +5,7 @@
   overflow-x: auto;
   border: 1px solid #cbd5e1; /* Darkened slightly to frame the grid better */
   border-radius: 8px;
-  /* box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); */
-  /* margin-top: 1.5rem; */
+  margin-top: 5px;
   background-color: #ffffff;
   position: relative;
 }
@@ -16,7 +15,7 @@
   width: 100%;
   border-collapse: separate; /* Essential to keep sticky headers flush with column lines */
   border-spacing: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
   color: #334155;
 }
@@ -32,7 +31,7 @@
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-bottom: 2px solid #cbd5e1;
   /* Vertical column separation for headers */
   border-right: 1px solid #cbd5e1; 

@@ -34,6 +34,8 @@ const PayrollDashboard = () => {
 
     const runPayroll = async (month, year) => {
         setLoading(true);
+        setError(null);
+        setPayroll(null)
         try {
             const response = await fetch(`${API_BASE_URL}/api/payroll/run`, {
                 method: 'POST',
@@ -41,6 +43,7 @@ const PayrollDashboard = () => {
                 body: JSON.stringify({ month, year })
             });
             if (response.status === 409) throw new Error("Payroll already exists for this period.");
+            if (response.status === 404) throw new Error("Cannot process payroll: No attendance records found for 1/2026.");
             if (!response.ok) throw new Error("Error running payroll.");
 
             // Refresh data after successful run
@@ -56,39 +59,47 @@ const PayrollDashboard = () => {
         <div className='grid'>
             <div>
                 <div className="controls">
-                    <label>Month: </label>
-                    <select
-                        value={month}
-                        onChange={(e) => setMonth(parseInt(e.target.value))}
-                    >
-                        <option value={1}>January</option>
-                        <option value={2}>February</option>
-                        <option value={3}>March</option>
-                        <option value={4}>April</option>
-                        <option value={5}>May</option>
-                        <option value={6}>June</option>
-                        <option value={7}>July</option>
-                        <option value={8}>August</option>
-                        <option value={9}>September</option>
-                        <option value={10}>October</option>
-                        <option value={11}>November</option>
-                        <option value={12}>December</option>
-                    </select>
 
-                    <label> Year: </label>
-                    <input
-                        type="number"
-                        value={year}
-                        onChange={(e) => setYear(parseInt(e.target.value))}
-                    />
+                    <div className="control">
+                        <label>Month: </label>
+                        <select
+                            value={month}
+                            onChange={(e) => setMonth(parseInt(e.target.value))}
+                        >
+                            <option value={1}>January</option>
+                            <option value={2}>February</option>
+                            <option value={3}>March</option>
+                            <option value={4}>April</option>
+                            <option value={5}>May</option>
+                            <option value={6}>June</option>
+                            <option value={7}>July</option>
+                            <option value={8}>August</option>
+                            <option value={9}>September</option>
+                            <option value={10}>October</option>
+                            <option value={11}>November</option>
+                            <option value={12}>December</option>
+                        </select>
+                    </div>
 
-                    <button onClick={() => fetchPayroll(month, year)}>View Payroll</button>
-                    <button onClick={() => runPayroll(month, year)}>Run Payroll</button>
+                    <div className="control">
+                        <label> Year: </label>
+                        <input
+                            type="number"
+                            value={year}
+                            onChange={(e) => setYear(parseInt(e.target.value))}
+                        />
+                    </div>
+
+                    <div className='actions'>
+                        <button className="btn action" onClick={() => fetchPayroll(month, year)}>View Payroll</button>
+                        <button className="btn action" onClick={() => runPayroll(month, year)}>Run Payroll</button>
+                    </div>
+
                 </div>
             </div>
             <div className='overflow-hidden'>
                 {loading && <p>Processing...</p>}
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {error && <p style={{ color: 'red', margin: "5px 0px" }}>{error}</p>}
                 {payroll !== null && <PayrollTable data={payroll} />}
             </div>
         </div>
