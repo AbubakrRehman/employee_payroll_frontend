@@ -1,0 +1,12 @@
+.grid {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+    /* grid-template-rows: repeat(2,); */
+}
+
+
+.overflow-hidden {
+    overflow: hidden;
+}

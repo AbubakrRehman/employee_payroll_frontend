@@ -1,0 +1,93 @@
+/* Container wrapper that enables scrolling & locks the header */
+.payroll-table-wrapper {
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: auto;
+  border: 1px solid #cbd5e1; /* Darkened slightly to frame the grid better */
+  border-radius: 8px;
+  /* box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); */
+  /* margin-top: 1.5rem; */
+  background-color: #ffffff;
+  position: relative;
+}
+
+/* Base table layout setup */
+.payroll-table {
+  width: 100%;
+  border-collapse: separate; /* Essential to keep sticky headers flush with column lines */
+  border-spacing: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.875rem;
+  color: #334155;
+}
+
+/* CRITICAL: Sticky Header Settings + Column Borders */
+.payroll-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #f1f5f9; /* Slightly darker tone for structural look */
+  color: #334155;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 14px 16px;
+  border-bottom: 2px solid #cbd5e1;
+  /* Vertical column separation for headers */
+  border-right: 1px solid #cbd5e1; 
+}
+
+/* Remove the right border on the very last header column */
+.payroll-table thead th:last-child {
+  border-right: none;
+}
+
+/* Body formatting styling + Column Borders */
+.payroll-table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+  vertical-align: middle;
+  /* Vertical column separation for data rows */
+  border-right: 1px solid #e2e8f0; 
+}
+
+/* Remove the right border on the very last data column */
+.payroll-table tbody td:last-child {
+  border-right: none;
+}
+
+/* Alternating zebra stripe styling for row readability */
+.payroll-table tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+/* Subtle hover highlight for rows */
+/* .payroll-table tbody tr:hover {
+  background-color: #f1f5f9;
+  transition: background-color 0.1s ease;
+} */
+
+/* Alignment Helpers */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.font-mono { font-family: monospace; }
+.font-semibold { font-weight: 600; color: #1e293b; }
+.font-medium { font-weight: 500; }
+.font-bold { font-weight: 700; }
+
+/* Status Text Coloring */
+.text-success { color: #16a34a; }
+.text-danger { color: #dc2626; }
+
+/* Empty state styling */
+.empty-msg {
+  text-align: center;
+  padding: 2.5rem;
+  color: #94a3b8;
+  background-color: #f8fafc;
+  border: 2px dashed #e2e8f0;
+  border-radius: 8px;
+  font-style: italic;
+}
